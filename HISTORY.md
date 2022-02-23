@@ -1,6 +1,16 @@
 Release History
 ===============
 
+4.0.1 (2022-02-22)
+------------------
+
+In honor of 2sday, how about 2 deploys?
+
+### Bugfixes
+
+- Fix some issues with dependencies (hopefully), so installing via `screenpy[requests]` works.
+
+
 4.0.0 (2022-02-22)
 ------------------
 

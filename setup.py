@@ -3,9 +3,8 @@ from os import path
 from setuptools import find_packages, setup
 
 requires = [
-    "screenpy>=4.0.0b1,<4.1",
-    "typing-extensions>=4.1.1,<4.2",
-    "requests>=2.25.0,<2.27.0",
+    "screenpy>=4.0.0",
+    "requests>=2.26.0,<2.27.0",
 ]
 
 repo_dir = path.abspath(path.dirname(__file__))
