@@ -13,7 +13,7 @@ class StatusCodeOfTheLastResponse:
     """Ask about the status code of the last API response received.
 
     Abilities Required:
-        |MakeAPIRequests|
+        :class:`~screenpy_requests.abilities.MakeAPIRequests`
 
     Examples::
 

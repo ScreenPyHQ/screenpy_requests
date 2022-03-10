@@ -15,7 +15,7 @@ class HeadersOfTheLastResponse:
     """Ask about the headers of the last API response received.
 
     Abilities Required:
-        |MakeAPIRequests|
+        :class:`~screenpy_requests.abilities.MakeAPIRequests`
 
     Examples::
 

@@ -34,11 +34,15 @@ def generate_send_method_class(method: str) -> Type[APIMethodAction]:
     SendMETHODRequest.__doc__ = f"""Send a {method} request to a URL.
 
 Abilities Required:
-    |MakeAPIRequests|
+    :class:`~screenpy_requests.abilities.MakeAPIRequests`
 
 Examples::
 
-    the_actor.attempts_to(Send{method}Request.to("https://www.example.com")))
+    the_actor.attempts_to(Send{method}Request.to("https://www.example.com"))
+
+    the_actor.attempts_to(
+        Send{method}Request.to("https://www.example.com").secretly()
+    )
 
     the_actor.attempts_to(
         Send{method}Request.to("https://www.example.com").with_(auth=(USER, PASS)
@@ -52,11 +56,15 @@ Examples::
 #: Send a DELETE request to a URL.
 #:
 #: Abilities Required:
-#:     |MakeAPIRequests|
+#:     :class:`~screenpy_requests.abilities.MakeAPIRequests`
 #:
 #: Examples::
 #:
-#:     the_actor.attempts_to(SendDELETERequest.to("https://www.example.com")))
+#:     the_actor.attempts_to(SendDELETERequest.to("https://www.example.com"))
+#:
+#:     the_actor.attempts_to(
+#:         SendDELETERequest.to("https://www.example.com").secretly()
+#:     )
 #:
 #:     the_actor.attempts_to(
 #:         SendDELETERequest.to("https://www.example.com").with_(auth=(USER, PASS))
@@ -66,11 +74,15 @@ SendDELETERequest = generate_send_method_class("DELETE")
 #: Send a GET request to a URL.
 #:
 #: Abilities Required:
-#:     |MakeAPIRequests|
+#:     :class:`~screenpy_requests.abilities.MakeAPIRequests`
 #:
 #: Examples::
 #:
-#:     the_actor.attempts_to(SendGETRequest.to("https://www.example.com")))
+#:     the_actor.attempts_to(SendGETRequest.to("https://www.example.com"))
+#:
+#:     the_actor.attempts_to(
+#:         SendGETRequest.to("https://www.example.com").secretly()
+#:     )
 #:
 #:     the_actor.attempts_to(
 #:         SendGETRequest.to("https://www.example.com").with_(auth=(USER, PASS))
@@ -80,11 +92,15 @@ SendGETRequest = generate_send_method_class("GET")
 #: Send a HEAD request to a URL.
 #:
 #: Abilities Required:
-#:     |MakeAPIRequests|
+#:     :class:`~screenpy_requests.abilities.MakeAPIRequests`
 #:
 #: Examples::
 #:
-#:     the_actor.attempts_to(SendHEADRequest.to("https://www.example.com")))
+#:     the_actor.attempts_to(SendHEADRequest.to("https://www.example.com"))
+#:
+#:     the_actor.attempts_to(
+#:         SendHEADRequest.to("https://www.example.com").secretly()
+#:     )
 #:
 #:     the_actor.attempts_to(
 #:         SendHEADRequest.to("https://www.example.com").with_(auth=(USER, PASS))
@@ -94,11 +110,15 @@ SendHEADRequest = generate_send_method_class("HEAD")
 #: Send an OPTIONS request to a URL.
 #:
 #: Abilities Required:
-#:     |MakeAPIRequests|
+#:     :class:`~screenpy_requests.abilities.MakeAPIRequests`
 #:
 #: Examples::
 #:
-#:     the_actor.attempts_to(SendOPTIONSRequest.to("https://www.example.com")))
+#:     the_actor.attempts_to(SendOPTIONSRequest.to("https://www.example.com"))
+#:
+#:     the_actor.attempts_to(
+#:         SendOPTIONSRequest.to("https://www.example.com").secretly()
+#:     )
 #:
 #:     the_actor.attempts_to(
 #:         SendOPTIONSRequest.to("https://www.example.com").with_(auth=(USER, PASS))
@@ -108,11 +128,15 @@ SendOPTIONSRequest = generate_send_method_class("OPTIONS")
 #: Send a PATCH request to a URL.
 #:
 #: Abilities Required:
-#:     |MakeAPIRequests|
+#:     :class:`~screenpy_requests.abilities.MakeAPIRequests`
 #:
 #: Examples::
 #:
-#:     the_actor.attempts_to(SendPATCHRequest.to("https://www.example.com")))
+#:     the_actor.attempts_to(SendPATCHRequest.to("https://www.example.com"))
+#:
+#:     the_actor.attempts_to(
+#:         SendPATCHRequest.to("https://www.example.com").secretly()
+#:     )
 #:
 #:     the_actor.attempts_to(
 #:         SendPATCHRequest.to("https://www.example.com").with_(auth=(USER, PASS))
@@ -122,11 +146,15 @@ SendPATCHRequest = generate_send_method_class("PATCH")
 #: Send a POST request to a URL.
 #:
 #: Abilities Required:
-#:     |MakeAPIRequests|
+#:     :class:`~screenpy_requests.abilities.MakeAPIRequests`
 #:
 #: Examples::
 #:
-#:     the_actor.attempts_to(SendPOSTRequest.to("https://www.example.com")))
+#:     the_actor.attempts_to(SendPOSTRequest.to("https://www.example.com"))
+#:
+#:     the_actor.attempts_to(
+#:         SendPOSTRequest.to("https://www.example.com").secretly()
+#:     )
 #:
 #:     the_actor.attempts_to(
 #:         SendPOSTRequest.to("https://www.example.com").with_(auth=(USER, PASS))
@@ -136,11 +164,15 @@ SendPOSTRequest = generate_send_method_class("POST")
 #: Send a PUT request to a URL.
 #:
 #: Abilities Required:
-#:     |MakeAPIRequests|
+#:     :class:`~screenpy_requests.abilities.MakeAPIRequests`
 #:
 #: Examples::
 #:
-#:     the_actor.attempts_to(SendPUTRequest.to("https://www.example.com")))
+#:     the_actor.attempts_to(SendPUTRequest.to("https://www.example.com"))
+#:
+#:     the_actor.attempts_to(
+#:         SendPUTRequest.to("https://www.example.com").secretly()
+#:     )
 #:
 #:     the_actor.attempts_to(
 #:         SendPUTRequest.to("https://www.example.com").with_(auth=(USER, PASS))

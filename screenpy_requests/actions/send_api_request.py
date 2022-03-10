@@ -14,10 +14,10 @@ class SendAPIRequest:
     """Send an API request.
 
     You can use this Action class directly if you wish, but the
-    Send{METHOD}Request classes are easier to read.
+    Send{METHOD}Request Actions are easier to read.
 
     Abilities Required:
-        |MakeAPIRequests|
+        :class:`~screenpy_requests.abilities.MakeAPIRequests`
 
     Examples::
 

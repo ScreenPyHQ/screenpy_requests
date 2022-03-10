@@ -16,7 +16,7 @@ class BodyOfTheLastResponse:
     """Ask about the body of the last API response received by the Actor.
 
     Abilities Required:
-        |MakeAPIRequests|
+        :class:`~screenpy_requests.abilities.MakeAPIRequests`
 
     Examples::
 

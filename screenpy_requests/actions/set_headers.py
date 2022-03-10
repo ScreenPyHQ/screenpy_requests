@@ -16,7 +16,7 @@ class SetHeaders:
     Note this will remove all other headers on your session.
 
     Abilities Required:
-        |MakeAPIRequests|
+        :class:`~screenpy_requests.abilities.MakeAPIRequests`
 
     Examples::
 
@@ -31,6 +31,15 @@ class SetHeaders:
         the_actor.attempts_to(SetHeaders({"Cookies": "csrf_token=1234"}))
 
         the_actor.attempts_to(SetHeaders("Cookies", "csrf_token=1234"))
+
+        the_actor.attempts_to(
+            SetHeaders(
+                (
+                    ("Cookies", "csrf_token=1234"),
+                    ("ContentType", "application/JSON"),
+                )
+            )
+        )
     """
 
     @staticmethod

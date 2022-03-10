@@ -12,18 +12,18 @@ class Cookies:
     """Ask about the cookies on the Actor's API session.
 
     Abilities Required:
-        |MakeAPIRequests|
+        :class:`~screenpy_requests.abilities.MakeAPIRequests`
 
     Examples::
 
         the_actor.should(
-            See.the(CookiesOnTheAPISession(), ContainTheEntry(type="snickerdoodle"))
+            See.the(Cookies(), ContainTheEntry(type="snickerdoodle"))
         )
     """
 
     def describe(self) -> str:
         """Describe the Question.."""
-        return "The session's cookies."
+        return "The API session's cookies."
 
     @beat("{} inspects their API session's cookies.")
     def answered_by(self, the_actor: Actor) -> dict:

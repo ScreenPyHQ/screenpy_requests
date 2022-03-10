@@ -14,7 +14,7 @@ class AddHeader:
     """Add one or more headers to the Actor's API session.
 
     Abilities Required:
-        |MakeAPIRequests|
+        :class:`~screenpy_requests.abilities.MakeAPIRequests`
 
     Examples::
 
@@ -27,6 +27,15 @@ class AddHeader:
         the_actor.attempts_to(AddHeader({"Authorization": TOKEN_AUTH_STRING}))
 
         the_actor.attempts_to(AddHeader("Authorization", TOKEN_AUTH_STRING))
+
+        the_actor.attempts_to(
+            AddHeaders(
+                (
+                    ("Authorization", TOKEN_AUTH_STRING),
+                    ("ContentType", "application/JSON"),
+                )
+            )
+        )
     """
 
     def which_should_be_kept_secret(self) -> "AddHeader":
