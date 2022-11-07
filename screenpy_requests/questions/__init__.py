@@ -8,19 +8,25 @@ from .headers_of_the_last_response import HeadersOfTheLastResponse
 from .status_code_of_the_last_response import StatusCodeOfTheLastResponse
 
 # Natural-language-enabling syntactic sugar
-TheBodyOfTheLastResponse = BodyOfTheLastResponse
+TheBody = Body = TheBodyOfTheLastResponse = BodyOfTheLastResponse
 TheCookies = Cookies
-TheHeadersOfTheLastResponse = HeadersOfTheLastResponse
+TheHeaders = Headers = TheHeadersOfTheLastResponse = HeadersOfTheLastResponse
 TheStatusCodeOfTheLastResponse = StatusCodeOfTheLastResponse
-
+TheStatusCode = StatusCode = StatusCodeOfTheLastResponse
 
 __all__ = [
+    "Body",
     "BodyOfTheLastResponse",
     "Cookies",
+    "Headers",
     "HeadersOfTheLastResponse",
+    "StatusCode",
     "StatusCodeOfTheLastResponse",
+    "TheBody",
     "TheBodyOfTheLastResponse",
     "TheCookies",
+    "TheHeaders",
     "TheHeadersOfTheLastResponse",
+    "TheStatusCode",
     "TheStatusCodeOfTheLastResponse",
 ]
