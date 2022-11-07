@@ -18,7 +18,7 @@ SendAPIRequest
 --------------
 
 This Action is a bit special.
-For code repetition's sake,
+For code DRYness' sake,
 all of the ``Send{METHOD}Request`` Actions
 use this Action;
 but for readability's sake,
@@ -26,15 +26,13 @@ you will want to use
 the appropriate ``Send{METHOD}Request`` Action
 listed below.
 
-In order to show the full documentation
-for all of these Actions,
-this Action needed to be included.
-
 .. autoclass:: SendAPIRequest
     :members:
 
 SendDELETERequest
 ^^^^^^^^^^^^^^^^^
+
+**Aliases**: Delete
 
 .. autoclass:: SendDELETERequest
     :members:
@@ -42,11 +40,15 @@ SendDELETERequest
 SendGETRequest
 ^^^^^^^^^^^^^^
 
+**Aliases**: Get
+
 .. autoclass:: SendGETRequest
     :members:
 
 SendHEADRequest
 ^^^^^^^^^^^^^^^
+
+**Aliases**: Head
 
 .. autoclass:: SendHEADRequest
     :members:
@@ -54,11 +56,15 @@ SendHEADRequest
 SendOPTIONSRequest
 ^^^^^^^^^^^^^^^^^^
 
+**Aliases**: Options
+
 .. autoclass:: SendOPTIONSRequest
     :members:
 
 SendPATCHRequest
 ^^^^^^^^^^^^^^^^
+
+**Aliases**: Patch
 
 .. autoclass:: SendPATCHRequest
     :members:
@@ -66,11 +72,15 @@ SendPATCHRequest
 SendPOSTRequest
 ^^^^^^^^^^^^^^^
 
+**Aliases**: Post
+
 .. autoclass:: SendPOSTRequest
     :members:
 
 SendPUTRequest
 ^^^^^^^^^^^^^^
+
+**Aliases**: Put
 
 .. autoclass:: SendPUTRequest
     :members:

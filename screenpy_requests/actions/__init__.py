@@ -15,7 +15,6 @@ class APIMethodAction(Protocol):
     @staticmethod
     def to(url: str) -> SendAPIRequest:
         """Set the URL this request will be sent to."""
-        ...
 
 
 def generate_send_method_class(method: str) -> Type[APIMethodAction]:
@@ -182,11 +181,25 @@ SendPUTRequest = generate_send_method_class("PUT")
 
 # Natural-language-enabling syntactic sugar
 AddHeaders = AddHeader
+Delete = SendDELETERequest
+Get = SendGETRequest
+Head = SendHEADRequest
+Options = SendOPTIONSRequest
+Patch = SendPATCHRequest
+Post = SendPOSTRequest
+Put = SendPUTRequest
 
 
 __all__ = [
     "AddHeader",
     "AddHeaders",
+    "Delete",
+    "Get",
+    "Head",
+    "Options",
+    "Patch",
+    "Post",
+    "Put",
     "SendDELETERequest",
     "SendGETRequest",
     "SendHEADRequest",
