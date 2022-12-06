@@ -9,7 +9,7 @@ These are the Questions added in ScreenPy Requests.
 BodyOfTheLastResponse
 ---------------------
 
-**Aliases**: TheBodyOfTheLastResponse
+**Aliases**: Body, TheBody, TheBodyOfTheLastResponse
 
 .. autoclass:: BodyOfTheLastResponse
     :members:
@@ -25,7 +25,7 @@ Cookies
 HeadersOfTheLastResponse
 ------------------------
 
-**Aliases**: TheHeadersOfTheLastResponse
+**Aliases**: Headers, TheHeaders, TheHeadersOfTheLastResponse
 
 .. autoclass:: HeadersOfTheLastResponse
     :members:
@@ -33,7 +33,7 @@ HeadersOfTheLastResponse
 StatusCodeOfTheLastResponse
 ---------------------------
 
-**Aliases**: TheStatusCodeOfTheLastResponse
+**Aliases**: StatusCode, TheStatusCode, TheStatusCodeOfTheLastResponse
 
 .. autoclass:: StatusCodeOfTheLastResponse
     :members:
