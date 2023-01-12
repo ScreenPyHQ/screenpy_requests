@@ -25,7 +25,7 @@ autodoc_mock_imports = ["selenium", "screenpy", "screenpy_pyotp"]
 # -- Project information -----------------------------------------------------
 
 project = 'screenpy_requests'
-copyright = '2022, Perry Goy'
+copyright = '2022-2023, Perry Goy'
 author = 'Perry Goy'
 
 # The full version, including alpha/beta/rc tags
