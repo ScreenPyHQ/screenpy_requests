@@ -1,7 +1,14 @@
 Release History
 ===============
 
-4.0.2 (2023-01-25)
+4.0.3 (2023-02-03)
+------------------
+
+### Improvements
+
+- An update that was left uncommitted late last night - the `aside`s which log the full headers and request payloads are now logged with `AIRY` gravitas, which corresponds to `DEBUG` in the default adapter. Should leave less-noisy logs!
+
+4.0.2 (2023-02-02)
 ------------------
 
 ### Improvements
