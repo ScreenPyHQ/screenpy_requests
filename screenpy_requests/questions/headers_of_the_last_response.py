@@ -20,7 +20,7 @@ class HeadersOfTheLastResponse:
     Examples::
 
         the_actor.should(
-            See.the(HeadersOfTheLastResponse(), ContainKey("Content-Type"))
+            See.the(HeadersOfTheLastResponse(), ContainsKey("Content-Type"))
         )
     """
 
