@@ -4,8 +4,8 @@ Add headers to an Actor's API session.
 
 from typing import Iterable, Union
 
-from screenpy import Actor
-from screenpy.pacing import aside, beat
+from screenpy import Actor, aside, beat
+from screenpy.narration import AIRY
 
 from ..abilities import MakeAPIRequests
 
@@ -41,20 +41,20 @@ class AddHeader:
     def which_should_be_kept_secret(self) -> "AddHeader":
         """Indicate the added headers should not be written to the log."""
         self.secret = True
-        self.secret_log = " secret"
+        self.headers_to_log = "some"
         return self
 
     secretly = which_should_be_kept_secret
 
     def describe(self) -> str:
         """Describe the Action in present tense."""
-        return f"Add some{self.secret_log} headers."
+        return f"Add {self.headers_to_log} headers."
 
-    @beat("{} adds some{secret_log} headers to their session.")
+    @beat("{} adds {headers_to_log} headers to their session.")
     def perform_as(self, the_actor: Actor) -> None:
         """Direct the Actor to add the given headers to their session."""
         if not self.secret:
-            aside(f"... the headers are: {self.headers}")
+            aside(f"... the headers are: {self.headers}", gravitas=AIRY)
         session = the_actor.ability_to(MakeAPIRequests).session
         session.headers.update(self.headers)
 
@@ -73,4 +73,4 @@ class AddHeader:
             self.headers.update(header_kwargs)
 
         self.secret = False
-        self.secret_log = ""
+        self.headers_to_log = ", ".join(self.headers)

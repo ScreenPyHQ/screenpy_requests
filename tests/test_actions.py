@@ -62,19 +62,22 @@ class TestAddHeader:
         assert session.headers == test_headers
 
     def test_logs_headers(self, APITester, caplog):
-        test_headers = {"foo": "bar"}
+        test_headers = {"foo": "bar", "spam": "eggs"}
 
-        with caplog.at_level(logging.INFO):
+        with caplog.at_level(logging.DEBUG):
             AddHeader(**test_headers).perform_as(APITester)
 
+        assert "foo, spam" in caplog.text
         assert str(test_headers) in caplog.text
 
     def test_hides_secret_headers(self, APITester, caplog):
-        test_headers = {"foo": "bar"}
+        test_headers = {"foo": "bar", "spam": "eggs"}
 
-        with caplog.at_level(logging.INFO):
+        with caplog.at_level(logging.DEBUG):
             AddHeader(**test_headers).secretly().perform_as(APITester)
 
+        assert "some headers" in caplog.text
+        assert "foo, spam" not in caplog.text
         assert str(test_headers) not in caplog.text
 
 
@@ -140,7 +143,7 @@ class TestSendAPIRequest:
     def test_parameters_logged(self, APITester, caplog):
         kwargs = {"test": "kwargs", "data": "foo"}
 
-        with caplog.at_level(logging.INFO):
+        with caplog.at_level(logging.DEBUG):
             SendAPIRequest("GET", "TEST_URL").with_(**kwargs).perform_as(APITester)
 
         assert str(kwargs) in caplog.text
@@ -148,7 +151,7 @@ class TestSendAPIRequest:
     def test_parameters_not_logged_if_secret(self, APITester, caplog):
         kwargs = {"test": "kwargs", "data": "foo"}
 
-        with caplog.at_level(logging.INFO):
+        with caplog.at_level(logging.DEBUG):
             SendAPIRequest("GET", "TEST_URL").with_(**kwargs).secretly().perform_as(
                 APITester
             )
@@ -200,17 +203,20 @@ class TestSetHeaders:
         assert session.headers == test_headers
 
     def test_logs_headers(self, APITester, caplog):
-        test_headers = {"foo": "bar"}
+        test_headers = {"foo": "bar", "spam": "eggs"}
 
-        with caplog.at_level(logging.INFO):
+        with caplog.at_level(logging.DEBUG):
             SetHeaders(**test_headers).perform_as(APITester)
 
+        assert "foo, spam" in caplog.text
         assert str(test_headers) in caplog.text
 
     def test_hides_secret_headers(self, APITester, caplog):
-        test_headers = {"foo": "bar"}
+        test_headers = {"foo": "bar", "spam": "eggs"}
 
-        with caplog.at_level(logging.INFO):
+        with caplog.at_level(logging.DEBUG):
             SetHeaders(**test_headers).secretly().perform_as(APITester)
 
+        assert "some headers" in caplog.text
+        assert "foo, spam" not in caplog.text
         assert str(test_headers) not in caplog.text

@@ -2,12 +2,12 @@ files: 'screenpy_requests/.*'
 fail_fast: false
 repos:
 - repo: https://github.com/psf/black
-  rev: 22.12.0
+  rev: 23.1.0
   hooks:
   - id: black
     language_version: python3.11
 - repo: https://github.com/timothycrosley/isort
-  rev: 5.11.4
+  rev: 5.12.0
   hooks:
   - id: isort
     language_version: python3.11
@@ -26,6 +26,6 @@ repos:
   hooks:
   - id: pylint
     name: pylint
-    entry: pylint --max-line-length=88 --disable=bad-continuation --disable=no-self-use --disable=too-few-public-methods --disable=invalid-name --disable=wrong-import-order --disable=import-error --disable=super-init-not-called --disable=duplicate-code --disable=logging-format-interpolation --disable=logging-fstring-interpolation
+    entry: pylint --max-line-length=88 --disable=too-few-public-methods --disable=invalid-name --disable=wrong-import-order --disable=import-error --disable=super-init-not-called --disable=duplicate-code --disable=logging-format-interpolation --disable=logging-fstring-interpolation
     language: system
     types: [python]

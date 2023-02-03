@@ -4,8 +4,8 @@ Send an API request.
 
 from typing import Any
 
-from screenpy.actor import Actor
-from screenpy.pacing import aside, beat
+from screenpy import Actor, aside, beat
+from screenpy.narration import AIRY
 
 from ..abilities import MakeAPIRequests
 
@@ -54,7 +54,7 @@ class SendAPIRequest:
     def perform_as(self, the_actor: Actor) -> None:
         """Direct the Actor to send an API request to the stored URL."""
         if self.kwargs and not self.secret:
-            aside(f"... along with the following: {self.kwargs}")
+            aside(f"... along with the following: {self.kwargs}", gravitas=AIRY)
 
         the_actor.uses_ability_to(MakeAPIRequests).to_send(
             self.method, self.url, **self.kwargs
