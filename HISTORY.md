@@ -1,6 +1,16 @@
 Release History
 ===============
 
+4.0.2 (2023-01-25)
+------------------
+
+### Improvements
+
+- All `Send*Request` Actions can now be referred to as their HTTP Action, e.g. `SendGETRequest` can now just be `Get`.
+- All Questions can now be referred without `-OfTheLastResponse`, e.g. `BodyOfTheLastResponse` can now just be `Body`.
+- All parts of ScreenPy Requests can now be imported from the root (i.e. from screenpy_requests import MakeAPIRequests, SendGETRequest, ...)
+
+
 4.0.1 (2022-02-22)
 ------------------
 
