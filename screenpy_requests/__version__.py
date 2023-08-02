@@ -5,7 +5,6 @@
 
 import importlib.metadata as importlib_metadata
 
-
 metadata = importlib_metadata.metadata("screenpy_requests")
 
 __title__ = metadata["Name"]
