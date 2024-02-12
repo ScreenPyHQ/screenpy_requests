@@ -66,4 +66,7 @@ class BodyOfTheLastResponse:
                 response = response[part]
             return response
         except JSONDecodeError:
-            return responses[-1].text
+            response = responses[-1].text
+            for part in self.body_parts:
+                response = response[part]
+            return response

@@ -68,6 +68,16 @@ class TestBodyOfTheLastResponse:
 
         assert botlr.answered_by(APITester) == "Hamlet"
 
+    def test_slices_text(self, APITester):
+        test_text = "My favorite play is Hamlet."
+        fake_response = mock.Mock()
+        fake_response.json.return_value = test_text
+        mocked_mar = APITester.ability_to(MakeAPIRequests)
+        mocked_mar.responses = [fake_response]
+
+        assert BodyOfTheLastResponse()[-7:-1].answered_by(APITester) == "Hamlet"
+
+
 
 class TestCookies:
     def test_can_be_instantiated(self):
