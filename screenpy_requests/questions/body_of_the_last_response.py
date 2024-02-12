@@ -63,7 +63,7 @@ class BodyOfTheLastResponse:
         try:
             response = responses[-1].json()
             for part in self.body_parts:
-                response = response.__getitem__(part)
+                response = response[part]
             return response
         except JSONDecodeError:
             return responses[-1].text
