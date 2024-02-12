@@ -2,6 +2,8 @@
 Investigate the body of the last API response received by the Actor.
 """
 
+from __future__ import annotations
+
 from json.decoder import JSONDecodeError
 from typing import Union
 
@@ -15,6 +17,9 @@ from ..abilities import MakeAPIRequests
 class BodyOfTheLastResponse:
     """Ask about the body of the last API response received by the Actor.
 
+    If you are expecting a JSON response, this Question can be indexed to
+    return only a section of that response. See the examples below.
+
     Abilities Required:
         :class:`~screenpy_requests.abilities.MakeAPIRequests`
 
@@ -25,9 +30,25 @@ class BodyOfTheLastResponse:
         )
 
         the_actor.should(
+            See.the(
+                BodyOfTheLastResponse()["users"][0]["first_name"],
+                ReadsExactly("Monty")
+            ),
+        )
+
+        the_actor.should(
             See.the(BodyOfTheLastResponse(), ReadsExactly("To be, or not to be"))
         )
     """
+
+    body_parts: list[str | int]
+
+    def __getitem__(self, key: str) -> BodyOfTheLastResponse:
+        self.body_parts.append(key)
+        return self
+
+    def __init__(self) -> None:
+        self.body_parts = []
 
     def describe(self) -> str:
         """Describe the Question.."""
@@ -40,6 +61,9 @@ class BodyOfTheLastResponse:
         if len(responses) < 1:
             raise UnableToAnswer(f"{the_actor} has not yet received any API responses.")
         try:
-            return responses[-1].json()
+            response = responses[-1].json()
+            for part in self.body_parts:
+                response = response.__getitem__(part)
+            return response
         except JSONDecodeError:
             return responses[-1].text

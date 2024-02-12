@@ -23,11 +23,11 @@ def generate_send_method_class(method: str) -> Type[APIMethodAction]:
     """
 
     class SendMETHODRequest:
-        "Will be programmatically replaced."
+        """Will be programmatically replaced."""
 
         @staticmethod
         def to(url: str) -> SendAPIRequest:
-            "Will be programmatically replaced."
+            """Will be programmatically replaced."""
             return SendAPIRequest(method, url)
 
     SendMETHODRequest.__doc__ = f"""Send a {method} request to a URL.

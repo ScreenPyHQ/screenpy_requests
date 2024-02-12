@@ -1,4 +1,5 @@
 import logging
+
 import pytest
 
 from screenpy_requests.abilities import MakeAPIRequests
@@ -13,8 +14,8 @@ from screenpy_requests.actions import (
     SendPATCHRequest,
     SendPOSTRequest,
     SendPUTRequest,
-    generate_send_method_class,
     SetHeaders,
+    generate_send_method_class,
 )
 
 

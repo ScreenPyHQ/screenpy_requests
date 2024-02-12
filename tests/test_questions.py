@@ -2,7 +2,6 @@ from json.decoder import JSONDecodeError
 from unittest import mock
 
 import pytest
-
 from requests.cookies import RequestsCookieJar
 from screenpy.exceptions import UnableToAnswer
 
@@ -52,6 +51,22 @@ class TestBodyOfTheLastResponse:
         mocked_mar.responses = [fake_response]
 
         assert BodyOfTheLastResponse().answered_by(APITester) == test_json
+
+    def test_stores_index_path(self):
+        botlr = BodyOfTheLastResponse()["shuffled"]["off"][10]["mortal"]["coils"]
+
+        assert botlr.body_parts == ["shuffled", "off", 10, "mortal", "coils"]
+
+    def test_digs_into_json(self, APITester):
+        test_json = {"plays": [{"name": "Hamlet"}]}
+        fake_response = mock.Mock()
+        fake_response.json.return_value = test_json
+        mocked_mar = APITester.ability_to(MakeAPIRequests)
+        mocked_mar.responses = [fake_response]
+
+        botlr = BodyOfTheLastResponse()["plays"][0]["name"]
+
+        assert botlr.answered_by(APITester) == "Hamlet"
 
 
 class TestCookies:

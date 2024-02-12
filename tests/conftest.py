@@ -1,7 +1,6 @@
 from unittest import mock
 
 import pytest
-
 from screenpy import AnActor
 
 from screenpy_requests.abilities import MakeAPIRequests
