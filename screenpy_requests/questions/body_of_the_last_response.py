@@ -20,15 +20,19 @@ class BodyOfTheLastResponse:
     If you are expecting a JSON response, this Question can be indexed to
     return only a section of that response. See the examples below.
 
+    If you are expecting a text response, you can also slice the text.
+
     Abilities Required:
         :class:`~screenpy_requests.abilities.MakeAPIRequests`
 
     Examples::
 
+        # JSON response
         the_actor.should(
             See.the(BodyOfTheLastResponse(), ContainsTheEntry(play="Hamlet"))
         )
 
+        # JSON response, picked
         the_actor.should(
             See.the(
                 BodyOfTheLastResponse()["users"][0]["first_name"],
@@ -36,8 +40,14 @@ class BodyOfTheLastResponse:
             ),
         )
 
+        # text response
         the_actor.should(
             See.the(BodyOfTheLastResponse(), ReadsExactly("To be, or not to be"))
+        )
+
+        # text response, sliced
+        the_actor.should(
+            See.the(BodyOfTheLastResponse()[6:12], ReadsExactly("Python"))
         )
     """
 
