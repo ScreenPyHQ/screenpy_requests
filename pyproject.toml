@@ -132,13 +132,13 @@ select = [
     "ERA",  # eradicate
     "F",  # Pyflakes
     "FA",  # flake8-future-annotations
-#    "FBT",  # flake8-boolean-trap
-#    "FIX",  # flake8-fixme
-#    "FLY",  # flynt
+    "FBT",  # flake8-boolean-trap
+    "FIX",  # flake8-fixme
+    "FLY",  # flynt
     "I",  # isort
-#    "ICN",  # flake8-import-conventions
-#    "ISC",  # flake8-implicit-str-concat
-#    "PGH",  # pygrep-hooks
+    "ICN",  # flake8-import-conventions
+    "ISC",  # flake8-implicit-str-concat
+    "PGH",  # pygrep-hooks
 #    "PIE",  # flake8-pie
 #    "PL",  # pylint
 #    "PT",  # flake8-pytest-style
