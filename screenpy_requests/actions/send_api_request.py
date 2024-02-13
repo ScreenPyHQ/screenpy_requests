@@ -30,7 +30,7 @@ class SendAPIRequest:
         )
     """
 
-    def with_(self, **kwargs: Any) -> "SendAPIRequest":  # noqa: ANN401
+    def with_(self, **kwargs: Any) -> SendAPIRequest:  # noqa: ANN401
         """Set additional kwargs to send through to the session's request.
 
         Args:
@@ -39,7 +39,7 @@ class SendAPIRequest:
         self.kwargs = kwargs
         return self
 
-    def which_should_be_kept_secret(self) -> "SendAPIRequest":
+    def which_should_be_kept_secret(self) -> SendAPIRequest:
         """Indicate the extra data should not be written to the log."""
         self.secret = True
         return self

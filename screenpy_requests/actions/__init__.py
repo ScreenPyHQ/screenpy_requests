@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Protocol, Type
+from typing import Protocol
 
 from .add_header import AddHeader
 from .send_api_request import SendAPIRequest
@@ -17,7 +17,7 @@ class APIMethodAction(Protocol):
         """Set the URL this request will be sent to."""
 
 
-def generate_send_method_class(method: str) -> Type[APIMethodAction]:
+def generate_send_method_class(method: str) -> type[APIMethodAction]:
     """Generates a class for a specific HTTP method call."""
 
     class SendMETHODRequest:

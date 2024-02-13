@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from json.decoder import JSONDecodeError
-from typing import TYPE_CHECKING, Union
+from typing import TYPE_CHECKING
 
 from screenpy.exceptions import UnableToAnswer
 from screenpy.pacing import beat

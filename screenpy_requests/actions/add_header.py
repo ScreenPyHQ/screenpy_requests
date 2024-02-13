@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Iterable, Union, cast
+from typing import Iterable, cast
 
 from screenpy import Actor, aside, beat
 from screenpy.narration import AIRY
@@ -38,7 +38,7 @@ class AddHeader:
         )
     """
 
-    def which_should_be_kept_secret(self) -> "AddHeader":
+    def which_should_be_kept_secret(self) -> AddHeader:
         """Indicate the added headers should not be written to the log."""
         self.secret = True
         self.headers_to_log = "some"
@@ -58,9 +58,7 @@ class AddHeader:
         session = the_actor.ability_to(MakeAPIRequests).session
         session.headers.update(self.headers)
 
-    def __init__(
-        self, *header_pairs: Union[str, Iterable], **header_kwargs: str
-    ) -> None:
+    def __init__(self, *header_pairs: str | Iterable, **header_kwargs: str) -> None:
         self.headers = {}
         if len(header_pairs) == 1:
             self.headers = dict(cast(Iterable, header_pairs[0]))
