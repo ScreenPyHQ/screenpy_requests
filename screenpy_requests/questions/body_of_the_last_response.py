@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from json.decoder import JSONDecodeError
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Union
 
 from screenpy.exceptions import UnableToAnswer
 from screenpy.pacing import beat
@@ -56,6 +56,7 @@ class BodyOfTheLastResponse:
     body_parts: list[subscripts]
 
     def __getitem__(self, key: subscripts) -> BodyOfTheLastResponse:
+        """Allows access to subscripts later in answered_by."""
         self.body_parts.append(key)
         return self
 
@@ -77,9 +78,8 @@ class BodyOfTheLastResponse:
             response = responses[-1].json()
             for part in self.body_parts:
                 response = response[part]
-            return response
         except JSONDecodeError:
             response = responses[-1].text
             for part in self.body_parts:
                 response = response[part]
-            return response
+        return response

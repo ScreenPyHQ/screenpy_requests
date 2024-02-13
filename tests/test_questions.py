@@ -58,12 +58,12 @@ class TestBodyOfTheLastResponse:
 
         assert BodyOfTheLastResponse().answered_by(APITester) == test_json
 
-    def test_stores_index_path(self):
+    def test_stores_index_path(self) -> None:
         botlr = BodyOfTheLastResponse()["shuffled"]["off"][10]["mortal"]["coils"]
 
         assert botlr.body_parts == ["shuffled", "off", 10, "mortal", "coils"]
 
-    def test_digs_into_json(self, APITester):
+    def test_digs_into_json(self, APITester: Actor) -> None:
         test_json = {"plays": [{"name": "Hamlet"}]}
         fake_response = mock.Mock()
         fake_response.json.return_value = test_json
@@ -74,7 +74,7 @@ class TestBodyOfTheLastResponse:
 
         assert botlr.answered_by(APITester) == "Hamlet"
 
-    def test_slices_text(self, APITester):
+    def test_slices_text(self, APITester: Actor) -> None:
         test_text = "My favorite play is Hamlet."
         fake_response = mock.Mock()
         fake_response.json.return_value = test_text
@@ -82,7 +82,6 @@ class TestBodyOfTheLastResponse:
         mocked_mar.responses = [fake_response]
 
         assert BodyOfTheLastResponse()[-7:-1].answered_by(APITester) == "Hamlet"
-
 
 
 class TestCookies:
