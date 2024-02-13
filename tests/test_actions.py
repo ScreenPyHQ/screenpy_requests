@@ -54,11 +54,13 @@ class TestAddHeader:
         assert ah4.headers == {"a": "1", "b": "2"}
 
     def test_raises_on_odd_arguments(self) -> None:
-        with pytest.raises(ValueError):
+        test_msg = "AddHeader received an odd-number of key-value pairs."
+        with pytest.raises(ValueError, match=test_msg):
             AddHeader("a", "1", "b")
 
     def test_raises_on_non_iterable_arguments(self) -> None:
-        with pytest.raises(ValueError):
+        test_msg = "dictionary update sequence element #0 has length 1; 2 is required"
+        with pytest.raises(ValueError, match=test_msg):
             AddHeader("a")
 
     def test_perform_add_header(self, APITester: Actor) -> None:
@@ -205,11 +207,13 @@ class TestSetHeaders:
         assert sh4.headers == {"a": "1", "b": "2"}
 
     def test_raises_on_odd_arguments(self) -> None:
-        with pytest.raises(ValueError):
+        test_msg = "SetHeader received an odd-number of key-value pairs."
+        with pytest.raises(ValueError, match=test_msg):
             SetHeaders("a", "1", "b")
 
     def test_raises_on_non_iterable_arguments(self) -> None:
-        with pytest.raises(ValueError):
+        test_msg = "dictionary update sequence element #0 has length 1; 2 is required"
+        with pytest.raises(ValueError, match=test_msg):
             SetHeaders("a")
 
     def test_sets_headers(self, APITester: Actor) -> None:

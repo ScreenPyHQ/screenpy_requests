@@ -8,7 +8,7 @@ from screenpy import AnActor
 from screenpy_requests.abilities import MakeAPIRequests
 
 
-@pytest.fixture(scope="function")
+@pytest.fixture()
 def APITester() -> AnActor:
     """Provide an Actor with mocked API testing abilities."""
     MakeAPIRequests_Mocked = mock.Mock(spec=MakeAPIRequests)
