@@ -13,6 +13,8 @@ from screenpy.pacing import beat
 
 from ..abilities import MakeAPIRequests
 
+subscripts = Union[str, int, slice]
+
 
 class BodyOfTheLastResponse:
     """Ask about the body of the last API response received by the Actor.
@@ -51,10 +53,10 @@ class BodyOfTheLastResponse:
         )
     """
 
-    body_parts: list[str | int | slice]
+    body_parts: list[subscripts]
 
-    def __getitem__(self, subscript: str | int | slice) -> BodyOfTheLastResponse:
-        self.body_parts.append(subscript)
+    def __getitem__(self, key: subscripts) -> BodyOfTheLastResponse:
+        self.body_parts.append(key)
         return self
 
     def __init__(self) -> None:
@@ -65,7 +67,7 @@ class BodyOfTheLastResponse:
         return "The body of the last response."
 
     @beat("{} examines the body of the last response they received.")
-    def answered_by(self, the_actor: Actor) -> Union[dict, str]:
+    def answered_by(self, the_actor: Actor) -> dict | str:
         """Direct the Actor to investigate the body of the last response."""
         responses = the_actor.ability_to(MakeAPIRequests).responses
         if len(responses) < 1:
