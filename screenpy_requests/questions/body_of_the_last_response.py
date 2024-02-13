@@ -53,7 +53,7 @@ class BodyOfTheLastResponse:
 
     body_parts: list[str | int]
 
-    def __getitem__(self, key: str) -> BodyOfTheLastResponse:
+    def __getitem__(self, key: str | int) -> BodyOfTheLastResponse:
         self.body_parts.append(key)
         return self
 
