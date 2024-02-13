@@ -1,6 +1,4 @@
-"""
-Investigate the body of the last API response received by the Actor.
-"""
+"""Investigate the body of the last API response received by the Actor."""
 
 from __future__ import annotations
 

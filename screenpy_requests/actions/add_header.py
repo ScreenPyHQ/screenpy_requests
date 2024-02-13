@@ -1,6 +1,4 @@
-"""
-Add headers to an Actor's API session.
-"""
+"""Add headers to an Actor's API session."""
 
 from typing import Iterable, Union
 

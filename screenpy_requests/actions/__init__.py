@@ -1,6 +1,4 @@
-"""
-Actions an Actor can perform using their Ability to MakeAPIRequests.
-"""
+"""Actions an Actor can perform using their Ability to MakeAPIRequests."""
 
 from typing import Protocol, Type
 
@@ -18,9 +16,7 @@ class APIMethodAction(Protocol):
 
 
 def generate_send_method_class(method: str) -> Type[APIMethodAction]:
-    """
-    Generates a class for a specific HTTP method call.
-    """
+    """Generates a class for a specific HTTP method call."""
 
     class SendMETHODRequest:
         """Will be programmatically replaced."""

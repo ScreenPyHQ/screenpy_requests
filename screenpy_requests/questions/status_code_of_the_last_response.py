@@ -1,6 +1,4 @@
-"""
-Investigate the status code of the last API response received.
-"""
+"""Investigate the status code of the last API response received."""
 
 from screenpy import Actor
 from screenpy.exceptions import UnableToAnswer

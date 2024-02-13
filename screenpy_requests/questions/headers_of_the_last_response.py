@@ -1,6 +1,4 @@
-"""
-Investigate the headers of the last API response received.
-"""
+"""Investigate the headers of the last API response received."""
 
 from typing import MutableMapping
 

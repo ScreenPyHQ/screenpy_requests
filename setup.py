@@ -1,3 +1,4 @@
+"""Install Screenpy Requests."""
 from os import path
 
 from setuptools import find_packages, setup

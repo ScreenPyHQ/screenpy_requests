@@ -1,6 +1,4 @@
-"""
-Send an API request.
-"""
+"""Send an API request."""
 
 from __future__ import annotations
 
