@@ -31,5 +31,6 @@ class HeadersOfTheLastResponse:
         """Direct the Actor to investigate the headers of the last response."""
         responses = the_actor.ability_to(MakeAPIRequests).responses
         if len(responses) < 1:
-            raise UnableToAnswer(f"{the_actor} has not yet received any API responses.")
+            msg = f"{the_actor} has not yet received any API responses."
+            raise UnableToAnswer(msg)
         return responses[-1].headers

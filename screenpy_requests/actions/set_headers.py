@@ -75,7 +75,8 @@ class SetHeaders:
         elif header_pairs and len(header_pairs) % 2 == 0:
             self.headers = dict(zip(header_pairs[0::2], header_pairs[1::2]))
         elif header_pairs:
-            raise ValueError("SetHeader received an odd-number of key-value pairs.")
+            msg = "SetHeader received an odd-number of key-value pairs."
+            raise ValueError(msg)
 
         if header_kwargs:
             self.headers.update(header_kwargs)

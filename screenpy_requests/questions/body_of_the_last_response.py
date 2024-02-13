@@ -69,7 +69,8 @@ class BodyOfTheLastResponse:
         """Direct the Actor to investigate the body of the last response."""
         responses = the_actor.ability_to(MakeAPIRequests).responses
         if len(responses) < 1:
-            raise UnableToAnswer(f"{the_actor} has not yet received any API responses.")
+            msg = f"{the_actor} has not yet received any API responses."
+            raise UnableToAnswer(msg)
         try:
             response = responses[-1].json()
             for part in self.body_parts:
