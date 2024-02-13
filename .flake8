@@ -1,0 +1,31 @@
+[flake8]
+exclude =
+    .github,
+    .pytest_cache,
+    .venv,
+    venv,
+    dockerfiles,
+    docs,
+    .coverage,
+    .coveragerc,
+    .env,
+    .env.example,
+    .flake8,
+    .gitignore,
+    alembic.ini,
+    bandit.yaml,
+    Makefile,
+    mkdocks.yml,
+    mypy.ini,
+    poetry.lock,
+    pyproject.toml,
+    pytest.ini,
+    README.md,
+    .idea,
+
+max-line-length = 88
+extend-ignore =
+    # See https://github.com/PyCQA/pycodestyle/issues/373
+    E203,
+
+per-file-ignores = conf.py:E501
