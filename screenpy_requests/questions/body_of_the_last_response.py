@@ -51,9 +51,9 @@ class BodyOfTheLastResponse:
         )
     """
 
-    body_parts: list[str | int]
+    body_parts: list[str | int | slice]
 
-    def __getitem__(self, key: str | int) -> BodyOfTheLastResponse:
+    def __getitem__(self, key: str | int | slice) -> BodyOfTheLastResponse:
         self.body_parts.append(key)
         return self
 
