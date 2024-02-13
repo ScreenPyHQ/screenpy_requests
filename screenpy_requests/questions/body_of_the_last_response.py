@@ -53,8 +53,8 @@ class BodyOfTheLastResponse:
 
     body_parts: list[str | int | slice]
 
-    def __getitem__(self, key: str | int | slice) -> BodyOfTheLastResponse:
-        self.body_parts.append(key)
+    def __getitem__(self, subscript: str | int | slice) -> BodyOfTheLastResponse:
+        self.body_parts.append(subscript)
         return self
 
     def __init__(self) -> None:
