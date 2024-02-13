@@ -1,10 +1,16 @@
 """Investigate the status code of the last API response received."""
 
-from screenpy import Actor
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
+
 from screenpy.exceptions import UnableToAnswer
 from screenpy.pacing import beat
 
 from ..abilities import MakeAPIRequests
+
+if TYPE_CHECKING:
+    from screenpy import Actor
 
 
 class StatusCodeOfTheLastResponse:

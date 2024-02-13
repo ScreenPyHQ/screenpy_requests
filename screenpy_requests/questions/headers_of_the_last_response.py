@@ -1,12 +1,16 @@
 """Investigate the headers of the last API response received."""
 
-from typing import MutableMapping
+from __future__ import annotations
 
-from screenpy import Actor
+from typing import TYPE_CHECKING, MutableMapping
+
 from screenpy.exceptions import UnableToAnswer
 from screenpy.pacing import beat
 
 from ..abilities import MakeAPIRequests
+
+if TYPE_CHECKING:
+    from screenpy import Actor
 
 
 class HeadersOfTheLastResponse:

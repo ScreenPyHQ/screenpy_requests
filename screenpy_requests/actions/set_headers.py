@@ -1,5 +1,7 @@
 """Set the headers on the Actor's API session."""
 
+from __future__ import annotations
+
 from typing import Iterable, Union
 
 from screenpy import Actor, aside, beat

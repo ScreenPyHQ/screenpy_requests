@@ -1,5 +1,7 @@
 """Actions an Actor can perform using their Ability to MakeAPIRequests."""
 
+from __future__ import annotations
+
 from typing import Protocol, Type
 
 from .add_header import AddHeader

@@ -3,13 +3,15 @@
 from __future__ import annotations
 
 from json.decoder import JSONDecodeError
-from typing import Union
+from typing import TYPE_CHECKING, Union
 
-from screenpy import Actor
 from screenpy.exceptions import UnableToAnswer
 from screenpy.pacing import beat
 
 from ..abilities import MakeAPIRequests
+
+if TYPE_CHECKING:
+    from screenpy import Actor
 
 subscripts = Union[str, int, slice]
 

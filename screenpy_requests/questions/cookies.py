@@ -1,9 +1,15 @@
 """Investigate the cookies on the Actor's web or API session."""
 
-from screenpy import Actor
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
+
 from screenpy.pacing import beat
 
 from ..abilities import MakeAPIRequests
+
+if TYPE_CHECKING:
+    from screenpy import Actor
 
 
 class Cookies:
