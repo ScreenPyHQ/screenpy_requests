@@ -121,7 +121,7 @@ class TestHeadersOfTheLastResponse:
         mock_response.headers = test_headers
         APITester.ability_to(MakeAPIRequests).responses = [mock_response]
 
-        HeadersOfTheLastResponse().answered_by(APITester) == test_headers
+        assert HeadersOfTheLastResponse().answered_by(APITester) == test_headers
 
 
 class TestStatusCodeOfTheLastResponse:
@@ -143,4 +143,4 @@ class TestStatusCodeOfTheLastResponse:
         mock_response.status_code = test_status_code
         APITester.ability_to(MakeAPIRequests).responses = [mock_response]
 
-        StatusCodeOfTheLastResponse().answered_by(APITester) == test_status_code
+        assert StatusCodeOfTheLastResponse().answered_by(APITester) == test_status_code
