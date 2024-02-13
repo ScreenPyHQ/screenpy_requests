@@ -1,5 +1,19 @@
 [tool.black]
-target-version = ['py311']
+target-version = ['py312']
+
+extend-exclude = '''
+# A regex preceded with ^/ will apply only to files and directories
+# in the root of the project.
+(
+    \.idea
+    | \.git
+    | \.mypy_cache
+    | \.tox
+    | \/docs
+    | ^/setup.py
+)
+
+'''
 
 # This pyproject.toml is setup so it can be used with or without poetry and also
 # supports editable installs (PEP 660) without breaking IDE and linter inspection.
@@ -27,6 +41,7 @@ classifiers = [
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
     "Development Status :: 5 - Production/Stable",
     "Intended Audience :: Developers",
     "Topic :: Software Development :: Quality Assurance",
@@ -48,26 +63,24 @@ classifiers = [
 python = "^3.8"
 screenpy = ">=4.0.2"
 requests = ">=2.26.0"
-types-requests = "2.25.0"
+types-requests = ">=2.26.0"
 
 
 # convenience packages for development of screenpy_requests only
 black = {version = "*", optional = true}
 coverage = {version = "*", optional = true}
-flake8 = {version = "*", optional = true}
 isort = {version = "*", optional = true}
 mypy = {version = "*", optional = true}
 pre-commit = {version = "*", optional = true}
-pylint = {version = "*", optional = true}
 pytest = {version = "*", optional = true}
 pytest-mock = {version = "*", optional = true}
-sphinx = {version = "^6.1.3", optional = true}
+ruff = {version = ">=0.2.0", optional = true}
+sphinx = {version = "*", optional = true}
 tox = {version = "*", optional = true}
 
 [tool.poetry.extras]
 dev = [
     "pre-commit",
-    "pylint",
     "pytest",
     "pytest-mock",
     "tox",
@@ -75,13 +88,12 @@ dev = [
 dev_all = [
     "black",
     "coverage",
-    "flake8",
     "isort",
     "mypy",
     "pre-commit",
-    "pylint",
     "pytest",
     "pytest-mock",
+    "ruff",
     "sphinx",
     "tox",
 ]
@@ -94,3 +106,112 @@ test = [
 [build-system]
 requires = ["poetry-core>=1.2.0"]
 build-backend = "poetry.core.masonry.api"
+
+
+[tool.ruff]
+target-version = "py38"  # minimum supported version
+line-length = 88  # same as Black.
+
+extend-exclude = [
+    "screenpy_requests/__init__.py",
+    "screenpy_requests/__version__.py",
+    "docs",
+]
+
+[tool.ruff.lint]
+select = [
+    "A",  # flake8-builtins
+    "ANN",  # flake8-annotations  # coming back to this one later to compare against mypy
+    "ARG",  # flake8-unused-arguments
+    "B",  # flake8-bugbear
+    "BLE",  # flake8-blind-except
+    "C4",  # flake8-comprehensions
+    "D",  # pydocstyle
+    "E",  # pycodestyle error
+    "EM",  # flake8-errmsg
+    "ERA",  # eradicate
+    "F",  # Pyflakes
+    "FA",  # flake8-future-annotations
+    "FBT",  # flake8-boolean-trap
+    "FIX",  # flake8-fixme
+    "FLY",  # flynt
+    "I",  # isort
+    "ICN",  # flake8-import-conventions
+    "ISC",  # flake8-implicit-str-concat
+    "PGH",  # pygrep-hooks
+    "PIE",  # flake8-pie
+    "PL",  # pylint
+    "PT",  # flake8-pytest-style
+    "Q",  # flake8-quotes
+    "RET",  # flake8-return
+    "RSE",  # flake8-raise
+    "RUF",  # ruff specific
+    "SIM",  # flake8-simplify
+    "T10",  # flake8-debugger
+    "T20",  # flake8-print
+    "TCH",  # flake8-type-checking
+    "TRY",  # tryceratops
+    "UP",  # python upgrade
+    "W",  # pycodestyle warning
+    "YTT",  # flake8-2020
+
+    # we would like these someday, but not yet
+    # "FURB",  # refurb
+]
+ignore = [
+    "D107",  # missing __init__ docstring, we do that in the class docstring.
+    "D203",  # one blank line before class docstring, no thanks!
+    "D212",  # multi line summary first line, we want a one line summary.
+    "ANN101",  # missing self annotation, we only annotate self when we return it.
+    "ANN102",  # missing cls annotation, we only annotate cls when we return it.
+]
+
+extend-safe-fixes = [
+    "EM101",
+    "EM102",
+    "TCH001", "TCH002", "TCH003", "TCH004",
+    #    "SIM108"
+    # maybe?
+    #    "F841",
+    "C419",
+    "D200", "D205", "D415",
+    "PT003", "PT006", "PT018",
+    "RET504",
+    "UP007",
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = [
+    "D",  # we don't need public-API-polished docstrings in tests.
+    "FBT",  # using a boolean as a test object is useful!
+    "PLR",  # likewise using specific numbers and strings in tests.
+]
+
+
+[tool.ruff.lint.isort]
+combine-as-imports = true
+split-on-trailing-comma = false
+known-first-party = ["screenpy_requests", "tests"]
+
+
+[tool.ruff.lint.flake8-pytest-style]
+mark-parentheses = false
+
+
+[tool.ruff.lint.pycodestyle]
+ignore-overlong-task-comments = true
+
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+
+[tool.isort]
+line_length = 88
+multi_line_output = 3
+include_trailing_comma = true
+use_parentheses = true
+combine_as_imports = true
+
+skip = [".idea", ".tox", "docs"]
+src_paths = ["screenpy_requests","tests"]
