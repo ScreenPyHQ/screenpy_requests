@@ -2,6 +2,8 @@
 Send an API request.
 """
 
+from __future__ import annotations
+
 from typing import Any
 
 from screenpy import Actor, aside, beat
@@ -30,7 +32,7 @@ class SendAPIRequest:
         )
     """
 
-    def with_(self, **kwargs: Any) -> "SendAPIRequest":
+    def with_(self, **kwargs: Any) -> "SendAPIRequest":  # noqa: ANN401
         """Set additional kwargs to send through to the session's request.
 
         Args:
