@@ -13,7 +13,7 @@ from ..abilities import MakeAPIRequests
 if TYPE_CHECKING:
     from screenpy import Actor
 
-subscripts = Union[str, int, slice]
+    subscripts = Union[str, int, slice]
 
 
 class BodyOfTheLastResponse:
