@@ -168,15 +168,11 @@ extend-safe-fixes = [
     "EM101",
     "EM102",
     "TCH001", "TCH002", "TCH003", "TCH004",
-    #    "SIM108"
-    # maybe?
-    #    "F841",
     "C419",
     "D200", "D205", "D415",
     "PT003", "PT006", "PT018",
     "RET504",
-    "UP006",
-    "UP007",
+    "UP006", "UP007",
 ]
 
 [tool.ruff.lint.per-file-ignores]
@@ -203,3 +199,6 @@ ignore-overlong-task-comments = true
 
 [tool.ruff.lint.pydocstyle]
 convention = "google"
+
+[tool.ruff.lint.flake8-type-checking]
+strict = true

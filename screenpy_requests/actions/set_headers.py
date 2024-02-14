@@ -2,12 +2,15 @@
 
 from __future__ import annotations
 
-from typing import Iterable, cast
+from typing import TYPE_CHECKING, Iterable, cast
 
-from screenpy import Actor, aside, beat
+from screenpy import aside, beat
 from screenpy.narration import AIRY
 
 from ..abilities import MakeAPIRequests
+
+if TYPE_CHECKING:
+    from screenpy import Actor
 
 
 class SetHeaders:

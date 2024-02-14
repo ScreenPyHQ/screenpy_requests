@@ -2,11 +2,14 @@
 
 from __future__ import annotations
 
-from typing import Any, Callable
+from typing import TYPE_CHECKING, Any, Callable
 
-from requests import Response, Session
+from requests import Session
 
 from ..exceptions import RequestError
+
+if TYPE_CHECKING:
+    from requests import Response
 
 
 class MakeAPIRequests:

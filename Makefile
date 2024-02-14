@@ -29,12 +29,6 @@ black-check:
 black-fix:
 	black .
 
-isort-check:
-	isort . --check
-
-isort-fix:
-	isort .
-
 ruff-check:
 	ruff check .
 
@@ -44,10 +38,11 @@ ruff-fix:
 mypy:
 	mypy .
 
-.PHONY: black-check black-fix isort-check isort-fix ruff-check ruff-fix mypy
+.PHONY: black-check black-fix ruff-check ruff-fix mypy
 
 pre-check-in: black-check ruff-check mypy
 
 pre-check-in-fix: black-fix ruff-fix mypy
 
 .PHONY: pre-check-in pre-check-in-fix
+

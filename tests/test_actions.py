@@ -10,7 +10,6 @@ from screenpy_requests.abilities import MakeAPIRequests
 from screenpy_requests.actions import (
     AddHeader,
     AddHeaders,
-    APIMethodAction,
     SendAPIRequest,
     SendDELETERequest,
     SendGETRequest,
@@ -25,6 +24,8 @@ from screenpy_requests.actions import (
 
 if TYPE_CHECKING:
     from screenpy import Actor
+
+    from screenpy_requests.actions import APIMethodAction
 
 
 class TestAddHeader:
@@ -98,7 +99,7 @@ class TestAddHeader:
 
 def test_generate_send_method_class_docstring() -> None:
     """Generated class and method's docstring both contain method name."""
-    test_method: str = "TESTYTEST"
+    test_method = "TESTYTEST"
 
     SendTESTMethod = generate_send_method_class(test_method)
 
