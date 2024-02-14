@@ -69,7 +69,6 @@ types-requests = ">=2.26.0"
 # convenience packages for development of screenpy_requests only
 black = {version = "*", optional = true}
 coverage = {version = "*", optional = true}
-isort = {version = "*", optional = true}
 mypy = {version = "*", optional = true}
 pre-commit = {version = "*", optional = true}
 pytest = {version = "*", optional = true}
@@ -88,7 +87,6 @@ dev = [
 dev_all = [
     "black",
     "coverage",
-    "isort",
     "mypy",
     "pre-commit",
     "pytest",
@@ -205,14 +203,3 @@ ignore-overlong-task-comments = true
 
 [tool.ruff.lint.pydocstyle]
 convention = "google"
-
-
-[tool.isort]
-line_length = 88
-multi_line_output = 3
-include_trailing_comma = true
-use_parentheses = true
-combine_as_imports = true
-
-skip = [".idea", ".tox", "docs"]
-src_paths = ["screenpy_requests","tests"]

@@ -439,20 +439,6 @@ files = [
 ]
 
 [[package]]
-name = "isort"
-version = "5.13.2"
-description = "A Python utility / library to sort Python imports."
-optional = true
-python-versions = ">=3.8.0"
-files = [
-    {file = "isort-5.13.2-py3-none-any.whl", hash = "sha256:8ca5e72a8d85860d5a3fa69b8745237f2939afe12dbf656afbcb47fe72d947a6"},
-    {file = "isort-5.13.2.tar.gz", hash = "sha256:48fdfcb9face5d58a4f6dde2e72a1fb8dcaf8ab26f95ab49fab84c2ddefb0109"},
-]
-
-[package.extras]
-colors = ["colorama (>=0.4.6)"]
-
-[[package]]
 name = "jinja2"
 version = "3.1.3"
 description = "A very fast and expressive template engine."
@@ -1325,10 +1311,10 @@ testing = ["big-O", "jaraco.functools", "jaraco.itertools", "more-itertools", "p
 
 [extras]
 dev = ["pre-commit", "pytest", "pytest-mock", "tox"]
-dev-all = ["black", "coverage", "isort", "mypy", "pre-commit", "pytest", "pytest-mock", "ruff", "sphinx", "tox"]
+dev-all = ["black", "coverage", "mypy", "pre-commit", "pytest", "pytest-mock", "ruff", "sphinx", "tox"]
 test = ["coverage", "pytest", "pytest-mock"]
 
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.8"
-content-hash = "554f7e82448435bf9ff549809addf96f4cd940bc93038407c4907d6400c6a84e"
+content-hash = "afaa3e2ae940354d63538b73fb4d262b088738f0308dda87ff286b0d46ee9ad6"
