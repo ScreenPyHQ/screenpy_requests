@@ -1,12 +1,15 @@
-"""
-Enable the Actor to make API requests and store the responses.
-"""
+"""Enable the Actor to make API requests and store the responses."""
 
-from typing import Any, Callable, Dict, List, Optional
+from __future__ import annotations
 
-from requests import Response, Session
+from typing import TYPE_CHECKING, Any, Callable
+
+from requests import Session
 
 from ..exceptions import RequestError
+
+if TYPE_CHECKING:
+    from requests import Response
 
 
 class MakeAPIRequests:
@@ -22,11 +25,11 @@ class MakeAPIRequests:
     """
 
     @staticmethod
-    def using(session: Session) -> "MakeAPIRequests":
+    def using(session: Session) -> MakeAPIRequests:
         """Provide a |Requests| session for the Ability to use."""
         return MakeAPIRequests(session=session)
 
-    def to_send(self, method: str, url: str, **kwargs: Any) -> None:
+    def to_send(self, method: str, url: str, **kwargs: Any) -> None:  # noqa: ANN401
         """Send a request.
 
         This is a pass-through to the session's ``request`` method and has the
@@ -37,7 +40,7 @@ class MakeAPIRequests:
             url: the URL to which to send the request.
             kwargs: additional keyword arguments to pass through to |request|.
         """
-        http_requests: Dict[str, Callable] = {
+        http_requests: dict[str, Callable] = {
             "DELETE": self.session.delete,
             "GET": self.session.get,
             "HEAD": self.session.head,
@@ -49,7 +52,8 @@ class MakeAPIRequests:
         method = method.upper()
 
         if method not in http_requests:
-            raise RequestError(f'"{method}" is not a valid HTTP method.')
+            msg = f'"{method}" is not a valid HTTP method.'
+            raise RequestError(msg)
 
         self.responses.append(http_requests[method](url, **kwargs))
 
@@ -60,12 +64,13 @@ class MakeAPIRequests:
         self.session.close()
 
     def __repr__(self) -> str:
+        """Represents Making API Requests."""
         return "Make API Requests"
 
     __str__ = __repr__
 
-    def __init__(self, session: Optional[Session] = None) -> None:
+    def __init__(self, session: Session | None = None) -> None:
         if session is None:
             session = Session()
         self.session = session
-        self.responses: List[Response] = []
+        self.responses: list[Response] = []

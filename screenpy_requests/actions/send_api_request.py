@@ -1,13 +1,16 @@
-"""
-Send an API request.
-"""
+"""Send an API request."""
 
-from typing import Any
+from __future__ import annotations
 
-from screenpy import Actor, aside, beat
+from typing import TYPE_CHECKING, Any
+
+from screenpy import aside, beat
 from screenpy.narration import AIRY
 
 from ..abilities import MakeAPIRequests
+
+if TYPE_CHECKING:
+    from screenpy import Actor
 
 
 class SendAPIRequest:
@@ -30,7 +33,7 @@ class SendAPIRequest:
         )
     """
 
-    def with_(self, **kwargs: Any) -> "SendAPIRequest":
+    def with_(self, **kwargs: Any) -> SendAPIRequest:  # noqa: ANN401
         """Set additional kwargs to send through to the session's request.
 
         Args:
@@ -39,7 +42,7 @@ class SendAPIRequest:
         self.kwargs = kwargs
         return self
 
-    def which_should_be_kept_secret(self) -> "SendAPIRequest":
+    def which_should_be_kept_secret(self) -> SendAPIRequest:
         """Indicate the extra data should not be written to the log."""
         self.secret = True
         return self

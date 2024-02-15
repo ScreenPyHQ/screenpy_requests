@@ -1,6 +1,4 @@
-"""
-Abilities which enable Actors to use Requests.
-"""
+"""Abilities which enable Actors to use Requests."""
 
 from .make_api_requests import MakeAPIRequests
 

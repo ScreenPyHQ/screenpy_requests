@@ -1,13 +1,16 @@
-"""
-Set the headers on the Actor's API session.
-"""
+"""Set the headers on the Actor's API session."""
 
-from typing import Iterable, Union
+from __future__ import annotations
 
-from screenpy import Actor, aside, beat
+from typing import TYPE_CHECKING, Iterable, cast
+
+from screenpy import aside, beat
 from screenpy.narration import AIRY
 
 from ..abilities import MakeAPIRequests
+
+if TYPE_CHECKING:
+    from screenpy import Actor
 
 
 class SetHeaders:
@@ -42,12 +45,14 @@ class SetHeaders:
         )
     """
 
+    headers: dict
+
     @staticmethod
-    def to(**kwargs: str) -> "SetHeaders":
+    def to(**kwargs: str) -> SetHeaders:
         """Specify the headers to set."""
         return SetHeaders(**kwargs)
 
-    def which_should_be_kept_secret(self) -> "SetHeaders":
+    def which_should_be_kept_secret(self) -> SetHeaders:
         """Indicate these headers should not be written to the log."""
         self.secret = True
         self.headers_to_log = "some"
@@ -68,16 +73,15 @@ class SetHeaders:
         session.headers.clear()
         session.headers.update(self.headers)
 
-    def __init__(
-        self, *header_pairs: Union[str, Iterable], **header_kwargs: str
-    ) -> None:
+    def __init__(self, *header_pairs: str | Iterable, **header_kwargs: str) -> None:
         self.headers = {}
         if len(header_pairs) == 1:
-            self.headers = dict(header_pairs[0])  # type: ignore
+            self.headers = dict(cast(Iterable, header_pairs[0]))
         elif header_pairs and len(header_pairs) % 2 == 0:
             self.headers = dict(zip(header_pairs[0::2], header_pairs[1::2]))
         elif header_pairs:
-            raise ValueError("SetHeader received an odd-number of key-value pairs.")
+            msg = "SetHeader received an odd-number of key-value pairs."
+            raise ValueError(msg)
 
         if header_kwargs:
             self.headers.update(header_kwargs)

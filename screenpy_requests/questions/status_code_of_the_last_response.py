@@ -1,12 +1,16 @@
-"""
-Investigate the status code of the last API response received.
-"""
+"""Investigate the status code of the last API response received."""
 
-from screenpy import Actor
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
+
 from screenpy.exceptions import UnableToAnswer
 from screenpy.pacing import beat
 
 from ..abilities import MakeAPIRequests
+
+if TYPE_CHECKING:
+    from screenpy import Actor
 
 
 class StatusCodeOfTheLastResponse:
@@ -31,5 +35,6 @@ class StatusCodeOfTheLastResponse:
         """Direct the Actor to investigate the status code of the last response."""
         responses = the_actor.ability_to(MakeAPIRequests).responses
         if len(responses) < 1:
-            raise UnableToAnswer(f"{the_actor} has not yet received any API responses.")
+            msg = f"{the_actor} has not yet received any API responses."
+            raise UnableToAnswer(msg)
         return responses[-1].status_code

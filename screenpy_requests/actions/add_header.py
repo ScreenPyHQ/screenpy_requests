@@ -1,13 +1,16 @@
-"""
-Add headers to an Actor's API session.
-"""
+"""Add headers to an Actor's API session."""
 
-from typing import Iterable, Union
+from __future__ import annotations
 
-from screenpy import Actor, aside, beat
+from typing import TYPE_CHECKING, Iterable, cast
+
+from screenpy import aside, beat
 from screenpy.narration import AIRY
 
 from ..abilities import MakeAPIRequests
+
+if TYPE_CHECKING:
+    from screenpy import Actor
 
 
 class AddHeader:
@@ -38,7 +41,7 @@ class AddHeader:
         )
     """
 
-    def which_should_be_kept_secret(self) -> "AddHeader":
+    def which_should_be_kept_secret(self) -> AddHeader:
         """Indicate the added headers should not be written to the log."""
         self.secret = True
         self.headers_to_log = "some"
@@ -58,16 +61,15 @@ class AddHeader:
         session = the_actor.ability_to(MakeAPIRequests).session
         session.headers.update(self.headers)
 
-    def __init__(
-        self, *header_pairs: Union[str, Iterable], **header_kwargs: str
-    ) -> None:
+    def __init__(self, *header_pairs: str | Iterable, **header_kwargs: str) -> None:
         self.headers = {}
         if len(header_pairs) == 1:
-            self.headers = dict(header_pairs[0])  # type: ignore
+            self.headers = dict(cast(Iterable, header_pairs[0]))
         elif header_pairs and len(header_pairs) % 2 == 0:
             self.headers = dict(zip(header_pairs[0::2], header_pairs[1::2]))
         elif header_pairs:
-            raise ValueError("AddHeader received an odd-number of key-value pairs.")
+            msg = "AddHeader received an odd-number of key-value pairs."
+            raise ValueError(msg)
 
         if header_kwargs:
             self.headers.update(header_kwargs)

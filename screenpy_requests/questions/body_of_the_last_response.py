@@ -1,19 +1,19 @@
-"""
-Investigate the body of the last API response received by the Actor.
-"""
+"""Investigate the body of the last API response received by the Actor."""
 
 from __future__ import annotations
 
 from json.decoder import JSONDecodeError
-from typing import Union
+from typing import TYPE_CHECKING, Union
 
-from screenpy import Actor
 from screenpy.exceptions import UnableToAnswer
 from screenpy.pacing import beat
 
 from ..abilities import MakeAPIRequests
 
-subscripts = Union[str, int, slice]
+if TYPE_CHECKING:
+    from screenpy import Actor
+
+    subscripts = Union[str, int, slice]
 
 
 class BodyOfTheLastResponse:
@@ -56,6 +56,7 @@ class BodyOfTheLastResponse:
     body_parts: list[subscripts]
 
     def __getitem__(self, key: subscripts) -> BodyOfTheLastResponse:
+        """Allows access to subscripts later in answered_by."""
         self.body_parts.append(key)
         return self
 
@@ -71,14 +72,14 @@ class BodyOfTheLastResponse:
         """Direct the Actor to investigate the body of the last response."""
         responses = the_actor.ability_to(MakeAPIRequests).responses
         if len(responses) < 1:
-            raise UnableToAnswer(f"{the_actor} has not yet received any API responses.")
+            msg = f"{the_actor} has not yet received any API responses."
+            raise UnableToAnswer(msg)
         try:
             response = responses[-1].json()
             for part in self.body_parts:
                 response = response[part]
-            return response
         except JSONDecodeError:
             response = responses[-1].text
             for part in self.body_parts:
                 response = response[part]
-            return response
+        return response

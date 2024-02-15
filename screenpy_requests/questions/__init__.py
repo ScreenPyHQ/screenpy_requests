@@ -1,6 +1,4 @@
-"""
-Questions an Actor might ask about API requests they've made.
-"""
+"""Questions an Actor might ask about API requests they've made."""
 
 from .body_of_the_last_response import BodyOfTheLastResponse
 from .cookies import Cookies
