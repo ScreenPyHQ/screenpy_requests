@@ -98,6 +98,7 @@ extend-safe-fixes = [
     "PT003", "PT006", "PT018",
     "RET504",
     "UP006", "UP007",
+    "W291",
 ]
 
 [tool.ruff.lint.flake8-pytest-style]
@@ -175,6 +176,7 @@ types-requests = ">=2.26.0"
 # convenience packages for development
 black = {version = "*", optional = true}
 coverage = {version = "*", optional = true}
+cruft = {version = "*", optional = true}
 mypy = {version = "*", optional = true}
 pre-commit = {version = "*", optional = true}
 pytest = {version = "*", optional = true}
@@ -188,6 +190,7 @@ tox = {version = "*", optional = true}
 dev = [
     "black",
     "coverage",
+    "cruft",
     "mypy",
     "pre-commit",
     "pytest",
