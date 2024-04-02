@@ -132,7 +132,7 @@ split-on-trailing-comma = false
 
 [tool.poetry]
 name = "screenpy_requests"
-version = "4.0.3"
+version = "4.0.4"
 description = "ScreenPy extension to enable interacting with Requests."
 authors = ["Perry Goy <perry.goy@gmail.com>"]
 maintainers = ["Marcel Wilson"]

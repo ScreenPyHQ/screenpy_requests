@@ -1,12 +1,27 @@
 Release History
 ===============
 
+4.0.4 (2023-04-02)
+------------------
+
+### Improvements
+
+- `BodyOfTheLastResponse` is now subscriptable, sliceable, and indexable! Combine that with its short alias `Body`, and you can very easily get at that content like `Body["access_token"]` or `Body["projects"][3]["start_datetime"][:4]`. Concise!
+
+### Development Niceties
+
+- We're now using [cruft](https://cruft.github.io/cruft/)! This should help us keep all these plugin repos in sync. (thanks @bandophahita!)
+- Screenpy Requests has been [ruff](https://docs.astral.sh/ruff/)'d up a bit. (thanks @bandophahita!)
+- Added tests for copyright updates! (thanks @bandophahita!)
+
+
 4.0.3 (2023-02-03)
 ------------------
 
 ### Improvements
 
 - An update that was left uncommitted late last night - the `aside`s which log the full headers and request payloads are now logged with `AIRY` gravitas, which corresponds to `DEBUG` in the default adapter. Should leave less-noisy logs!
+
 
 4.0.2 (2023-02-02)
 ------------------
