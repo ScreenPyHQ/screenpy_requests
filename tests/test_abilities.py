@@ -22,7 +22,8 @@ class TestMakeAPIRequests:
             mar.send("TEST_METHOD", "url")
 
     @pytest.mark.parametrize(
-        "method", ["delete", "get", "head", "options", "patch", "post", "put"]
+        "method",
+        ["delete", "get", "head", "options", "patch", "post", "put"],
     )
     def test_http_method_calls_correct_session_method(self, method: str) -> None:
         mocked_session = mock.Mock()

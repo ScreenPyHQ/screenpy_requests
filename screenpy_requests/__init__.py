@@ -11,7 +11,7 @@ INT. SITEPACKAGES DIRECTORY.
 ScreenPy Requests is an extension for ScreenPy, enabling interaction with
 Requests.
 
-:copyright: (c) 2022-2024 by Perry Goy.
+:copyright: (c) 2022-2025 by Perry Goy.
 :license: MIT, see LICENSE for more details.
 """
 

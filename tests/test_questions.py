@@ -27,24 +27,24 @@ class TestBodyOfTheLastResponse:
         assert isinstance(botlr, BodyOfTheLastResponse)
 
     def test_raises_error_if_no_responses(self, APITester: Actor) -> None:
-        botlr = BodyOfTheLastResponse()
         APITester.ability_to(MakeAPIRequests).responses = []
 
         with pytest.raises(UnableToAnswer):
-            botlr.answered_by(APITester)
+            BodyOfTheLastResponse().answered_by(APITester)
 
     def test_handles_non_json(self, APITester: Actor) -> None:
         """Non-JSON bodies are returned as text."""
-        botlr = BodyOfTheLastResponse()
         test_body = "And stop calling me Shirley."
         mock_response = mock.Mock()
         mock_response.json.side_effect = JSONDecodeError(
-            "Surely, it's not JSON", test_body, 1
+            "Surely, it's not JSON",
+            test_body,
+            1,
         )
         mock_response.text = test_body
         APITester.ability_to(MakeAPIRequests).responses = [mock_response]
 
-        answer = botlr.answered_by(APITester)
+        answer = BodyOfTheLastResponse().answered_by(APITester)
 
         assert answer == test_body
 
@@ -64,24 +64,39 @@ class TestBodyOfTheLastResponse:
         assert botlr.body_parts == ["shuffled", "off", 10, "mortal", "coils"]
 
     def test_digs_into_json(self, APITester: Actor) -> None:
-        test_json = {"plays": [{"name": "Hamlet"}]}
+        test_json = {"plays": [{"name": "Hamlet: A Horror Story"}]}
         fake_response = mock.Mock()
         fake_response.json.return_value = test_json
         mocked_mar = APITester.ability_to(MakeAPIRequests)
         mocked_mar.responses = [fake_response]
 
-        botlr = BodyOfTheLastResponse()["plays"][0]["name"]
+        botlr = BodyOfTheLastResponse()["plays"][0]["name"][:6]
 
         assert botlr.answered_by(APITester) == "Hamlet"
 
-    def test_slices_text(self, APITester: Actor) -> None:
+    def test_indexes_and_slices_text(self, APITester: Actor) -> None:
         test_text = "My favorite play is Hamlet."
         fake_response = mock.Mock()
         fake_response.json.return_value = test_text
         mocked_mar = APITester.ability_to(MakeAPIRequests)
         mocked_mar.responses = [fake_response]
 
+        assert BodyOfTheLastResponse()[3].answered_by(APITester) == "f"
         assert BodyOfTheLastResponse()[-7:-1].answered_by(APITester) == "Hamlet"
+
+    def test_raises_error_for_non_indexable_index(self, APITester: Actor) -> None:
+        test_body = "Roger, roger."
+        mock_response = mock.Mock()
+        mock_response.json.side_effect = JSONDecodeError(
+            "What's your vector, Victor?",
+            test_body,
+            1,
+        )
+        mock_response.text = test_body
+        APITester.ability_to(MakeAPIRequests).responses = [mock_response]
+
+        with pytest.raises(UnableToAnswer):
+            BodyOfTheLastResponse()["blah"].answered_by(APITester)
 
 
 class TestCookies:

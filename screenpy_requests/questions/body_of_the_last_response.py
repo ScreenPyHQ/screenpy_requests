@@ -8,7 +8,7 @@ from typing import TYPE_CHECKING, Union
 from screenpy.exceptions import UnableToAnswer
 from screenpy.pacing import beat
 
-from ..abilities import MakeAPIRequests
+from screenpy_requests.abilities import MakeAPIRequests
 
 if TYPE_CHECKING:
     from screenpy import Actor
@@ -79,7 +79,12 @@ class BodyOfTheLastResponse:
             for part in self.body_parts:
                 response = response[part]
         except JSONDecodeError:
+            # response is a text body
             response = responses[-1].text
             for part in self.body_parts:
+                if not isinstance(part, (int, slice)):
+                    msg = f"Cannot index the response string with [{part}]."
+                    raise UnableToAnswer(msg) from None
                 response = response[part]
+
         return response

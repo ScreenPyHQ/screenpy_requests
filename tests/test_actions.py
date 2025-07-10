@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import logging
 from typing import TYPE_CHECKING, cast
-from unittest import mock
 
 import pytest
 
@@ -23,6 +22,8 @@ from screenpy_requests.actions import (
 )
 
 if TYPE_CHECKING:
+    from unittest import mock
+
     from screenpy import Actor
 
     from screenpy_requests.actions import APIMethodAction
@@ -74,7 +75,9 @@ class TestAddHeader:
         assert session.headers == test_headers
 
     def test_logs_headers(
-        self, APITester: Actor, caplog: pytest.LogCaptureFixture
+        self,
+        APITester: Actor,
+        caplog: pytest.LogCaptureFixture,
     ) -> None:
         test_headers = {"foo": "bar", "spam": "eggs"}
 
@@ -85,7 +88,9 @@ class TestAddHeader:
         assert str(test_headers) in caplog.text
 
     def test_hides_secret_headers(
-        self, APITester: Actor, caplog: pytest.LogCaptureFixture
+        self,
+        APITester: Actor,
+        caplog: pytest.LogCaptureFixture,
     ) -> None:
         test_headers = {"foo": "bar", "spam": "eggs"}
 
@@ -155,11 +160,13 @@ class TestSendAPIRequest:
 
         SendAPIRequest(method, url).with_(**kwargs).perform_as(APITester)
 
-        mocked_mar = cast(mock.Mock, APITester.ability_to(MakeAPIRequests))
+        mocked_mar = cast("mock.Mock", APITester.ability_to(MakeAPIRequests))
         mocked_mar.to_send.assert_called_once_with(method, url, **kwargs)
 
     def test_parameters_logged(
-        self, APITester: Actor, caplog: pytest.LogCaptureFixture
+        self,
+        APITester: Actor,
+        caplog: pytest.LogCaptureFixture,
     ) -> None:
         kwargs = {"test": "kwargs", "data": "foo"}
 
@@ -169,13 +176,15 @@ class TestSendAPIRequest:
         assert str(kwargs) in caplog.text
 
     def test_parameters_not_logged_if_secret(
-        self, APITester: Actor, caplog: pytest.LogCaptureFixture
+        self,
+        APITester: Actor,
+        caplog: pytest.LogCaptureFixture,
     ) -> None:
         kwargs = {"test": "kwargs", "data": "foo"}
 
         with caplog.at_level(logging.DEBUG):
             SendAPIRequest("GET", "TEST_URL").with_(**kwargs).secretly().perform_as(
-                APITester
+                APITester,
             )
 
         assert str(kwargs) not in caplog.text
@@ -227,7 +236,9 @@ class TestSetHeaders:
         assert session.headers == test_headers
 
     def test_logs_headers(
-        self, APITester: Actor, caplog: pytest.LogCaptureFixture
+        self,
+        APITester: Actor,
+        caplog: pytest.LogCaptureFixture,
     ) -> None:
         test_headers = {"foo": "bar", "spam": "eggs"}
 
@@ -238,7 +249,9 @@ class TestSetHeaders:
         assert str(test_headers) in caplog.text
 
     def test_hides_secret_headers(
-        self, APITester: Actor, caplog: pytest.LogCaptureFixture
+        self,
+        APITester: Actor,
+        caplog: pytest.LogCaptureFixture,
     ) -> None:
         test_headers = {"foo": "bar", "spam": "eggs"}
 

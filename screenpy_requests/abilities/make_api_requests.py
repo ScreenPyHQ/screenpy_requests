@@ -6,7 +6,7 @@ from typing import TYPE_CHECKING, Any, Callable
 
 from requests import Session
 
-from ..exceptions import RequestError
+from screenpy_requests.exceptions import RequestError
 
 if TYPE_CHECKING:
     from requests import Response

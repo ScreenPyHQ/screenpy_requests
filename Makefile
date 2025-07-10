@@ -30,17 +30,26 @@ mypy:
 
 .PHONY: black-check black-fix ruff-check ruff-fix mypy
 
+lint: black-check ruff-check
+
+lint-fix: black-fix ruff-fix
+
 pre-check-in: black-check ruff-check mypy
 
 pre-check-in-fix: black-fix ruff-fix mypy
 
-.PHONY: pre-check-in pre-check-in-fix
+.PHONY: pre-check-in pre-check-in-fix lint lint-fix
 
 # requires poetry-plugin-export
 requirements:
 	poetry export --without-hashes --extras dev -f requirements.txt > requirements.txt
 
 .PHONY: requirements
+
+cruft-update:
+	cruft update --allow-untracked-files
+
+.PHONY: cruft-update
 
 ################################################################################
 # sub-package specific

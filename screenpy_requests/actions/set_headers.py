@@ -2,14 +2,16 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Iterable, cast
+from typing import TYPE_CHECKING, cast
 
 from screenpy import aside, beat
 from screenpy.narration import AIRY
 
-from ..abilities import MakeAPIRequests
+from screenpy_requests.abilities import MakeAPIRequests
 
 if TYPE_CHECKING:
+    from collections.abc import Iterable
+
     from screenpy import Actor
 
 
@@ -76,7 +78,7 @@ class SetHeaders:
     def __init__(self, *header_pairs: str | Iterable, **header_kwargs: str) -> None:
         self.headers = {}
         if len(header_pairs) == 1:
-            self.headers = dict(cast(Iterable, header_pairs[0]))
+            self.headers = dict(cast("Iterable", header_pairs[0]))
         elif header_pairs and len(header_pairs) % 2 == 0:
             self.headers = dict(zip(header_pairs[0::2], header_pairs[1::2]))
         elif header_pairs:
