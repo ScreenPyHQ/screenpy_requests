@@ -7,7 +7,7 @@ from typing import TYPE_CHECKING, Any
 from screenpy import aside, beat
 from screenpy.narration import AIRY
 
-from ..abilities import MakeAPIRequests
+from screenpy_requests.abilities import MakeAPIRequests
 
 if TYPE_CHECKING:
     from screenpy import Actor
@@ -60,7 +60,9 @@ class SendAPIRequest:
             aside(f"... along with the following: {self.kwargs}", gravitas=AIRY)
 
         the_actor.uses_ability_to(MakeAPIRequests).to_send(
-            self.method, self.url, **self.kwargs
+            self.method,
+            self.url,
+            **self.kwargs,
         )
 
     def __init__(self, method: str, url: str) -> None:

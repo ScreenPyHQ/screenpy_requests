@@ -7,7 +7,7 @@ from typing import TYPE_CHECKING
 from screenpy.exceptions import UnableToAnswer
 from screenpy.pacing import beat
 
-from ..abilities import MakeAPIRequests
+from screenpy_requests.abilities import MakeAPIRequests
 
 if TYPE_CHECKING:
     from screenpy import Actor

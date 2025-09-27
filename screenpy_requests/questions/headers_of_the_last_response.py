@@ -2,14 +2,16 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, MutableMapping
+from typing import TYPE_CHECKING
 
 from screenpy.exceptions import UnableToAnswer
 from screenpy.pacing import beat
 
-from ..abilities import MakeAPIRequests
+from screenpy_requests.abilities import MakeAPIRequests
 
 if TYPE_CHECKING:
+    from collections.abc import MutableMapping
+
     from screenpy import Actor
 
 
